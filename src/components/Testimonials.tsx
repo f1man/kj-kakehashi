@@ -1,7 +1,7 @@
 import React from "react";
-import { ParsedTestimonial } from "@/utils/fetchTestimonials";
+import { TestimonialData } from "@/utils/fetchTestimonials";
 
-export default function Testimonials({ testimonials }: { testimonials: ParsedTestimonial[] }) {
+export default function Testimonials({ testimonials }: { testimonials: TestimonialData[] }) {
   // アバターと背景色のローテーション用
   const avatars = [
     { emoji: "🌸", bg: "#FFE0EE" },
