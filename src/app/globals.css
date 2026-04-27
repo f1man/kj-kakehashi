@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-noto-sans-jp), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-kj-beige: #FDFBF7;
+  --color-kj-pink: #FDF1F0;
+  --color-kj-orange: #FFF4E5;
+  --color-kj-primary: #FF8BA7;
+  --color-kj-primary-hover: #FF7092;
+  --color-kj-text: #4A4A4A;
+  --color-kj-line: #06C755;
+  --color-kj-line-hover: #05A546;
+
+  --animate-marquee: marquee 100s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-gray-200);
+  }
+  body {
+    background-color: var(--color-kj-beige);
+    color: var(--color-kj-text);
+  }
+}
+
+@layer utilities {
+  .css-modal {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .css-modal:target {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
