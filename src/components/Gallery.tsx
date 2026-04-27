@@ -12,9 +12,9 @@ export default function Gallery({ images }: { images: string[] }) {
   ];
 
   // 画像を3行に分割する
-  const row1 = [];
-  const row2 = [];
-  const row3 = [];
+  const row1: string[] = [];
+  const row2: string[] = [];
+  const row3: string[] = [];
   
   safeImages.forEach((img, i) => {
     if (i % 3 === 0) row1.push(img);
