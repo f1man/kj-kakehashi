@@ -1,7 +1,7 @@
 import React from "react";
-import { ParsedEvent } from "@/utils/fetchEvents";
+import { EventData } from "@/utils/fetchEvents";
 
-export default function Events({ events }: { events: ParsedEvent[] }) {
+export default function Events({ events }: { events: EventData[] }) {
   // カラーパレットのローテーション用
   const palettes = [
     { color: "#FFE8D6", accent: "#F97B5A", emoji: "🍀" },
