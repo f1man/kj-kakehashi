@@ -56,6 +56,10 @@ export default function ApplicationModal({
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-1">LINE ID または 電話番号 <span className="text-kj-primary text-xs ml-1">必須</span></label>
                 <input required name="lineId" type="text" className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-kj-primary focus:ring-1 focus:ring-kj-primary" placeholder="例: sakura123 または 010-1234-5678" />
+                <p className="text-xs text-red-500 mt-2 font-bold leading-relaxed">
+                  ※ ご連絡のために必ずご入力ください。<br />
+                  どうしてもIDを公開したくない場合は、このフォームを使わずに公式LINEへ直接メッセージをお送りいただき、日程をご相談ください。
+                </p>
               </div>
 
               {/* Age */}
