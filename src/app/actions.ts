@@ -13,8 +13,8 @@ export async function submitApplication(formData: FormData) {
   const lineId = formData.get("lineId") as string;
   const stayDuration = formData.get("stayDuration") as string;
 
-  // バリデーション
-  if (!nickname || !age || !gender || !availableDate || meetupTypes.length === 0 || !introduction) {
+  // バリデーション（LINE IDも必須化）
+  if (!nickname || !lineId || !age || !gender || !availableDate || meetupTypes.length === 0 || !introduction) {
     redirect("/?error=missing_fields#join");
   }
 
@@ -27,7 +27,16 @@ export async function submitApplication(formData: FormData) {
     availableDate,
     meetupType: meetupTypes.join(", "),
     introduction,
-    timestamp: new Date().toISOString(),
+    timestamp: new Intl.DateTimeFormat('ja-JP', {
+      timeZone: 'Asia/Seoul',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).format(new Date()).replace(/\//g, '-'),
   };
 
   try {
