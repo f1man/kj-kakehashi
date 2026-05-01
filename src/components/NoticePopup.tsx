@@ -4,14 +4,29 @@ import React, { useState, useEffect } from "react";
 
 export default function NoticePopup() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hideToday, setHideToday] = useState(false);
 
   useEffect(() => {
+    const hideDate = localStorage.getItem('hideNoticePopupDate');
+    const today = new Date().toDateString();
+    
+    if (hideDate === today) {
+      return;
+    }
+
     // Show the popup shortly after the page loads
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleClose = () => {
+    if (hideToday) {
+      localStorage.setItem('hideNoticePopupDate', new Date().toDateString());
+    }
+    setIsOpen(false);
+  };
 
   if (!isOpen) return null;
 
@@ -26,7 +41,7 @@ export default function NoticePopup() {
             <span>⚠️</span> 重要なお知らせ
           </h2>
           <button 
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             className="text-white hover:text-gray-200 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20"
             aria-label="閉じる"
           >
@@ -68,11 +83,23 @@ export default function NoticePopup() {
               公式LINEにメッセージを送る
             </a>
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
               className="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-full transition-colors"
             >
               閉じる
             </button>
+            
+            <label className="flex items-center justify-center mt-2 cursor-pointer group">
+              <input 
+                type="checkbox" 
+                checked={hideToday}
+                onChange={(e) => setHideToday(e.target.checked)}
+                className="w-4 h-4 text-kj-primary border-gray-300 rounded focus:ring-kj-primary cursor-pointer"
+              />
+              <span className="ml-2 text-sm text-gray-500 group-hover:text-gray-700 transition-colors">
+                今日はもう表示しない (오늘 하루 보지 않기)
+              </span>
+            </label>
           </div>
         </div>
       </div>
