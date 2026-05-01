@@ -10,6 +10,7 @@ import CTA from "@/components/CTA";
 import { fetchEvents } from "@/utils/fetchEvents";
 import { fetchTestimonials } from "@/utils/fetchTestimonials";
 import ApplicationModal from "@/components/ApplicationModal";
+import NoticePopup from "@/components/NoticePopup";
 import FAQ from "@/components/FAQ";
 import fs from "fs";
 import path from "path";
@@ -47,6 +48,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
 
   return (
     <main className="relative min-h-screen pb-24">
+      <NoticePopup />
       <Hero />
       <PromoVideo />
       <Features />
