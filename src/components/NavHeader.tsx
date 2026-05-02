@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function NavHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggleLang } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -33,11 +35,52 @@ export default function NavHeader() {
         className="serif"
         style={{ fontSize: 20, fontWeight: 700, color: "#2E1A0E", letterSpacing: "0.02em" }}
       >
-        KJ架け橋
+        {lang === 'ja' ? 'KJ架け橋' : 'KJ가케하시'}
       </span>
-      <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="btn-line" style={{ padding: "8px 18px", fontSize: 13 }}>
-        <span>LINE相談</span>
-      </a>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{
+          display: "flex",
+          border: "1px solid #F5E8DC",
+          borderRadius: "6px",
+          overflow: "hidden",
+          background: "rgba(255, 255, 255, 0.8)",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.02)"
+        }}>
+          <button 
+            onClick={() => { if(lang !== 'ko') toggleLang(); }}
+            style={{
+              padding: "5px 12px",
+              fontSize: "12px",
+              fontWeight: 600,
+              background: lang === 'ko' ? "#F97B5A" : "transparent",
+              color: lang === 'ko' ? "white" : "#9A7A6A",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.2s ease"
+            }}
+          >
+            KR
+          </button>
+          <button 
+            onClick={() => { if(lang !== 'ja') toggleLang(); }}
+            style={{
+              padding: "5px 12px",
+              fontSize: "12px",
+              fontWeight: 600,
+              background: lang === 'ja' ? "#F97B5A" : "transparent",
+              color: lang === 'ja' ? "white" : "#9A7A6A",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.2s ease"
+            }}
+          >
+            JP
+          </button>
+        </div>
+        <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="btn-line" style={{ padding: "8px 14px", fontSize: 13 }}>
+          <span>{lang === 'ja' ? 'LINE相談' : 'LINE 문의'}</span>
+        </a>
+      </div>
     </nav>
   );
 }

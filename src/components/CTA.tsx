@@ -1,6 +1,33 @@
+"use client";
+
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
+
+const translations = {
+  ja: {
+    title1: "韓国旅行を、",
+    title2: "もっと特別な思い出に。",
+    desc1: "まずはLINEでお気軽にご相談ください。",
+    desc2: "日本語で丁寧にご案内します。",
+    btnLine: "LINEで相談する",
+    btnJoin: "参加してみる",
+    note: "※ 返信は日本語でお送りします"
+  },
+  ko: {
+    title1: "한국 여행을,",
+    title2: "더욱 특별한 추억으로.",
+    desc1: "먼저 LINE으로 편하게 문의해 주세요.",
+    desc2: "친절하게 안내해 드립니다.",
+    btnLine: "LINE 문의",
+    btnJoin: "참여해보기",
+    note: "※ 답변은 한국어로 보내드립니다"
+  }
+};
 
 export default function CTA() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <section
       style={{
@@ -27,9 +54,9 @@ export default function CTA() {
             marginBottom: 16,
           }}
         >
-          韓国旅行を、
+          {t.title1}
           <br />
-          もっと特別な思い出に。
+          {t.title2}
         </h2>
 
         <p
@@ -40,24 +67,24 @@ export default function CTA() {
             marginBottom: 36,
           }}
         >
-          まずはLINEでお気軽にご相談ください。
+          {t.desc1}
           <br />
-          日本語で丁寧にご案内します。
+          {t.desc2}
         </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "center" }}>
           <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="btn-line" style={{ width: "100%", maxWidth: 300 }}>
             <span style={{ fontSize: 20 }}>💬</span>
-            LINEで相談する
+            {t.btnLine}
           </a>
           <a href="#join" className="btn-outline" style={{ width: "100%", maxWidth: 300 }}>
             <span>🌟</span>
-            参加してみる
+            {t.btnJoin}
           </a>
         </div>
 
         <p style={{ marginTop: 24, fontSize: 12, color: "#B0907A" }}>
-          ※ 返信は日本語でお送りします
+          {t.note}
         </p>
       </div>
     </section>

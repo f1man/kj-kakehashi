@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FixedLINEButton() {
+  const { lang } = useLanguage();
+
   return (
     <div className="line-fab">
-      <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="line-fab-btn" title="LINEで相談する">
+      <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="line-fab-btn" title={lang === 'ja' ? "LINEで相談する" : "LINE 문의하기"}>
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
           <path
             d="M16 4C9.373 4 4 8.92 4 15c0 3.78 2.038 7.158 5.2 9.348L8 28l4.47-2.352A13.7 13.7 0 0016 26c6.627 0 12-4.92 12-11S22.627 4 16 4z"
@@ -15,7 +20,7 @@ export default function FixedLINEButton() {
           />
         </svg>
       </a>
-      <span className="line-fab-label">LINE相談</span>
+      <span className="line-fab-label">{lang === 'ja' ? "LINE相談" : "LINE 문의"}</span>
     </div>
   );
 }

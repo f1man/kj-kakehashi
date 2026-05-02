@@ -1,7 +1,30 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+
+const translations = {
+  ja: {
+    label: "ギャラリー",
+    title1: "交流会の",
+    title2: "雰囲気をのぞいてみて",
+    sub: "笑顔があふれる、あたたかい時間",
+    note: "※ 実際の交流会の様子です"
+  },
+  ko: {
+    label: "갤러리",
+    title1: "교류회의",
+    title2: "분위기를 감상하세요",
+    sub: "웃음이 넘치는 따뜻한 시간",
+    note: "※ 실제 교류회 모습입니다"
+  }
+};
 
 export default function Gallery({ images }: { images: string[] }) {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   // 画像がない場合のフォールバック用ダミー画像
   const safeImages = images.length > 0 ? images : [
     "https://placehold.co/600x400/FDF1F0/FF8BA7?text=Meetup+1",
@@ -51,7 +74,7 @@ export default function Gallery({ images }: { images: string[] }) {
           <div key={i} className="marquee-item">
             <Image
               src={src}
-              alt="ギャラリー画像"
+              alt="Gallery Image"
               fill
               sizes="(max-width: 640px) 30vw, 200px"
               className="object-cover rounded-2xl"
@@ -71,13 +94,13 @@ export default function Gallery({ images }: { images: string[] }) {
       }}
     >
       <div style={{ textAlign: "center", marginBottom: 32, padding: "0 20px" }}>
-        <span className="section-label">ギャラリー</span>
+        <span className="section-label">{t.label}</span>
         <h2 className="section-title">
-          交流会の
+          {t.title1}
           <br />
-          雰囲気をのぞいてみて
+          {t.title2}
         </h2>
-        <p className="section-sub">笑顔があふれる、あたたかい時間</p>
+        <p className="section-sub">{t.sub}</p>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "40px" }}>
@@ -99,7 +122,7 @@ export default function Gallery({ images }: { images: string[] }) {
           marginTop: 32,
         }}
       >
-        ※ 実際の交流会の様子です
+        {t.note}
       </p>
     </section>
   );

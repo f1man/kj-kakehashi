@@ -1,39 +1,81 @@
+"use client";
+
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
+
+const translations = {
+  ja: {
+    label: "参加方法",
+    title1: "3ステップで",
+    title2: "かんたんに参加できます",
+    steps: [
+      {
+        step: "01",
+        title: "LINEを追加",
+        desc: "まずはLINEの友だちに追加してください。スタッフが日本語でご案内します。",
+        icon: "💬",
+      },
+      {
+        step: "02",
+        title: "日程を確認",
+        desc: "開催予定の交流会から、ご都合に合う日程を選んでください。旅行スケジュールに合わせてOK！",
+        icon: "📅",
+      },
+      {
+        step: "03",
+        title: "交流会に参加",
+        desc: "当日は会場にお越しください。初めての方でもスタッフがしっかりサポートします。",
+        icon: "🌟",
+      },
+    ],
+    btnLine: "LINEで友だちを追加する"
+  },
+  ko: {
+    label: "참여 방법",
+    title1: "3단계로",
+    title2: "간단하게 참여할 수 있습니다",
+    steps: [
+      {
+        step: "01",
+        title: "LINE 추가",
+        desc: "먼저 LINE 친구를 추가해주세요. 스태프가 친절하게 안내해 드립니다.",
+        icon: "💬",
+      },
+      {
+        step: "02",
+        title: "일정 확인",
+        desc: "개최 예정인 교류회 중 원하시는 일정을 선택해주세요. 여행 일정에 맞춰 편하게 고르시면 됩니다!",
+        icon: "📅",
+      },
+      {
+        step: "03",
+        title: "교류회 참여",
+        desc: "당일 행사장에 방문해주세요. 처음 오시는 분들도 스태프가 확실히 서포트해 드립니다.",
+        icon: "🌟",
+      },
+    ],
+    btnLine: "LINE에서 친구 추가하기"
+  }
+};
 
 export default function Steps() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <section style={{ padding: "72px 20px", background: "#fff" }}>
       <div style={{ maxWidth: 480, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <span className="section-label">参加方法</span>
+          <span className="section-label">{t.label}</span>
           <h2 className="section-title">
-            3ステップで
+            {t.title1}
             <br />
-            かんたんに参加できます
+            {t.title2}
           </h2>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          {[
-            {
-              step: "01",
-              title: "LINEを追加",
-              desc: "まずはLINEの友だちに追加してください。スタッフが日本語でご案内します。",
-              icon: "💬",
-            },
-            {
-              step: "02",
-              title: "日程を確認",
-              desc: "開催予定の交流会から、ご都合に合う日程を選んでください。旅行スケジュールに合わせてOK！",
-              icon: "📅",
-            },
-            {
-              step: "03",
-              title: "交流会に参加",
-              desc: "当日は会場にお越しください。初めての方でもスタッフがしっかりサポートします。",
-              icon: "🌟",
-            },
-          ].map((item, i) => (
+          {t.steps.map((item, i) => (
             <div key={i} style={{ display: "flex", gap: 20, position: "relative", paddingBottom: 32 }}>
               {/* vertical line */}
               {i < 2 && (
@@ -73,7 +115,7 @@ export default function Steps() {
         <div style={{ textAlign: "center", marginTop: 8 }}>
           <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="btn-line">
             <span style={{ fontSize: 18 }}>💬</span>
-            LINEで友だちを追加する
+            {t.btnLine}
           </a>
         </div>
       </div>

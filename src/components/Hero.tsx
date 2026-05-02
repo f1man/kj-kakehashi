@@ -1,6 +1,35 @@
+"use client";
+
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
+
+const translations = {
+  ja: {
+    badge: "日韓交流コミュニティ",
+    title1: "韓国で、",
+    title2: "忘れられない出会い",
+    title3: "を。",
+    desc1: "初めてでも安心。",
+    desc2: "ひとり参加OKの日韓交流会。",
+    btnJoin: "参加してみる",
+    btnLine: "LINEで相談する",
+  },
+  ko: {
+    badge: "한일 교류 커뮤니티",
+    title1: "한국에서,",
+    title2: "잊지 못할 만남",
+    title3: "을.",
+    desc1: "처음이라도 안심.",
+    desc2: "혼자서도 참여 가능한 한일 교류회.",
+    btnJoin: "참여해보기",
+    btnLine: "LINE 문의",
+  }
+};
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <section
       style={{
@@ -82,7 +111,7 @@ export default function Hero() {
         }}
       >
         <img src="https://flagcdn.com/jp.svg" alt="Japan" style={{ width: 18, borderRadius: 2 }} />
-        <span>日韓交流コミュニティ</span>
+        <span>{t.badge}</span>
         <img src="https://flagcdn.com/kr.svg" alt="South Korea" style={{ width: 18, borderRadius: 2 }} />
       </div>
 
@@ -101,7 +130,7 @@ export default function Hero() {
           zIndex: 1,
         }}
       >
-        韓国で、
+        {t.title1}
         <br />
         <span
           style={{
@@ -110,9 +139,9 @@ export default function Hero() {
             WebkitTextFillColor: "transparent",
           }}
         >
-          忘れられない出会い
+          {t.title2}
         </span>
-        を。
+        {t.title3}
       </h1>
 
       <p
@@ -126,9 +155,9 @@ export default function Hero() {
           maxWidth: 360,
         }}
       >
-        初めてでも安心。
+        {t.desc1}
         <br />
-        ひとり参加OKの日韓交流会。
+        {t.desc2}
       </p>
 
       <div
@@ -144,11 +173,11 @@ export default function Hero() {
       >
         <a href="#join" className="btn-primary">
           <span>🌟</span>
-          参加してみる
+          {t.btnJoin}
         </a>
         <a href="https://line.me/R/ti/p/@797hrieh" target="_blank" rel="noopener noreferrer" className="btn-line">
           <span style={{ fontSize: 18 }}>💬</span>
-          LINEで相談する
+          {t.btnLine}
         </a>
       </div>
 

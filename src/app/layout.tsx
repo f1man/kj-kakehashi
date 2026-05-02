@@ -9,6 +9,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 import { ModalProvider } from "@/context/ModalContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import NavHeader from "@/components/NavHeader";
 import Footer from "@/components/Footer";
 
@@ -25,11 +26,13 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} font-sans scroll-smooth`}>
       <body suppressHydrationWarning className="antialiased min-h-screen flex flex-col">
-        <ModalProvider>
-          <NavHeader />
-          {children}
-          <Footer />
-        </ModalProvider>
+        <LanguageProvider>
+          <ModalProvider>
+            <NavHeader />
+            {children}
+            <Footer />
+          </ModalProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
